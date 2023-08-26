@@ -1,9 +1,10 @@
-import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
 
 const Home = () => {
   return (
+    <ScrollView>
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.header2}>
@@ -42,9 +43,65 @@ const Home = () => {
       </View>
       <Image source={require('../../assets/advert_banner.jpg')} style={styles.advertisement} />
       <View style={styles.paymentBanner}>
-        <Text style={{fontSize:18,color:'black',fontWeight:'700',margin:5}}>Money Transfer</Text>
+        <Text style={{ fontSize: 18, color: 'black', fontWeight: '700', margin: 5 }}>Money Transfer</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+          <TouchableOpacity style={styles.money_transfer}>
+            <Image source={require('../../assets/user.png')} style={styles.Money_Transfer_Logo} />
+            <Text style={styles.moneyTransfer_Text}>To Mobile Number</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.money_transfer}>
+            <Image source={require('../../assets/bank.png')} style={styles.Money_Transfer_Logo} />
+            <Text style={styles.moneyTransfer_Text}>To Bank/UPI ID</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.money_transfer}>
+            <Image source={require('../../assets/loader.png')} style={styles.Money_Transfer_Logo} />
+            <Text style={styles.moneyTransfer_Text}>To Self Account</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.money_transfer}>
+            <Image source={require('../../assets/bank.png')} style={styles.Money_Transfer_Logo} />
+            <Text style={styles.moneyTransfer_Text}>Check Balance</Text>
+          </TouchableOpacity>
+        </View>
+
+      </View>
+      <View style={{ flexDirection: 'row', left: 2 }}>
+        <TouchableOpacity style={styles.reward}>
+          <Image source={require('../../assets/wallet.png')} style={styles.wallet} />
+          <Text style={styles.walletText}>To Mobile Number</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.reward}>
+          <Image source={require('../../assets/giftbox.png')} style={styles.wallet} />
+          <Text style={styles.walletText}>To Mobile Number</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.reward}>
+          <Image source={require('../../assets/bull-horn.png')} style={styles.wallet} />
+          <Text style={styles.walletText}>To Mobile Number</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.rechargeSection}>
+        <Text style={{ fontSize: 18, color: 'black', fontWeight: '600', margin: 5 }}>Recharges & Bill Pay</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+          <TouchableOpacity style={styles.recharge}>
+            <Image source={require('../../assets/mobile.png')} style={styles.rechargeLogo} />
+            <Text style={styles.moneyTransfer_Text}>Mobile Recharge</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.recharge}>
+            <Image source={require('../../assets/satellite-dish.png')} style={styles.rechargeLogo} />
+            <Text style={styles.moneyTransfer_Text}>DTH</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.recharge}>
+            <Image source={require('../../assets/lightbulb.png')} style={styles.rechargeLogo} />
+            <Text style={styles.moneyTransfer_Text}>Electricity</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.recharge}>
+            <Image source={require('../../assets/bank.png')} style={styles.rechargeLogo} />
+            <Text style={styles.moneyTransfer_Text}>Credit Card Payment</Text>
+          </TouchableOpacity>
+        </View>
+        
       </View>
     </View>
+    </ScrollView>
   )
 }
 
@@ -158,11 +215,70 @@ const styles = StyleSheet.create({
     marginTop: '4%',
     borderRadius: 15,
   },
-  paymentBanner:{
+  paymentBanner: {
     width: '94%',
-    height: scale(100),
-    alignSelf:'center',
+    height: scale(140),
+    alignSelf: 'center',
     marginTop: '2%',
-    backgroundColor:'white'
-  }
+    backgroundColor: 'white'
+  },
+  money_transfer: {
+    width: scale(50),
+    height: scale(50),
+    backgroundColor: 'purple',
+    borderRadius: 10,
+    marginTop: 6,
+  },
+  Money_Transfer_Logo: {
+    width: scale(30),
+    height: scale(30),
+    margin: scale(7),
+    tintColor: 'white',
+  },
+  moneyTransfer_Text: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: 'black',
+    marginTop: 6,
+  },
+  reward: {
+    width: scale(100),
+    height: scale(70),
+    backgroundColor: '#277be8',
+    borderRadius: 20,
+    margin: scale(7),
+  },
+  wallet:{
+    width: scale(30),
+    height: scale(30),
+    marginTop: scale(5),
+    alignSelf:'center',
+    tintColor:'white',
+  },
+  walletText:{
+    color:'black',
+    alignSelf:'center',
+    fontWeight:'700',
+  },
+  recharge:{
+    width: scale(50),
+    height: scale(50),
+    // backgroundColor: 'purple',
+    borderRadius: 10,
+    marginTop: 6,
+  },
+  rechargeLogo: {
+    width: scale(30),
+    height: scale(30),
+    margin: scale(7),
+    tintColor: 'purple',
+  },
+  rechargeSection: {
+    width: '94%',
+    height: scale(140),
+    alignSelf: 'center',
+    marginTop: '2%',
+    backgroundColor: 'white',
+    marginBottom: '20%',
+  },
 })
