@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import CommanHeaders from './CommanHeaders'
 
 const Stores = () => {
   return (
     <View>
-      <Text>Stores</Text>
+      <CommanHeaders />
     </View>
   )
 }
