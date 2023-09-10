@@ -12,7 +12,7 @@ const Stores = () => {
         <Text style={{ marginTop: 25, position: 'absolute', marginLeft: 70, }}>Search By Store name or phone number </Text>
       </View>
       <FlatList
-        data={[1, 1, 1, 1, 1]}
+        data={[2, 2, 2, 2, 2]}
         renderItem={({ item, value }) => {
           return (
             <View style={styles.shopItem}>
@@ -29,41 +29,75 @@ const Stores = () => {
           )
         }}
       />
-      <FlatList 
-      numColumns={4}
-      contentContainerStyle={{marginTop:moderateScale(20)}}
-      data={[
-        {
-          icon: require('../../assets/shop.png'),
-          title: 'Kirana & General Store',
-        },
-        {
-          icon: require('../../assets/shop.png'),
-          title: 'Kirana & General Store',
-        },
-        {
-          icon: require('../../assets/shop.png'),
-          title: 'Kirana & General Store',
-        },
-        {
-          icon: require('../../assets/shop.png'),
-          title: 'Kirana & General Store',
-        },
-      ]}
-      renderItem={({item,index}) => {
-        return (
-              <TouchableOpacity style={styles.recharge}>
-            <Image source={item.icon} style={styles.rechargeLogo} />
-            <Text style={styles.rechargeText}>{item.title}</Text>
-          </TouchableOpacity>
-        )
-      }}
+      <FlatList
+        numColumns={4}
+        contentContainerStyle={{ marginTop: moderateScale(20) }}
+        data={[
+          {
+            icon: require('../../assets/shop.png'),
+            title: 'Kirana & General Store',
+          },
+          {
+            icon: require('../../assets/shop.png'),
+            title: 'Kirana & General Store',
+          },
+          {
+            icon: require('../../assets/shop.png'),
+            title: 'Kirana & General Store',
+          },
+          {
+            icon: require('../../assets/shop.png'),
+            title: 'Kirana & General Store',
+          },
+        ]}
+        renderItem={({ item, index }) => {
+          return (
+            <TouchableOpacity style={styles.recharge}>
+              <Image source={item.icon} style={styles.rechargeLogo} />
+              <Text style={styles.rechargeText}>{item.title}</Text>
+            </TouchableOpacity>
+          )
+        }}
       />
 
       <View style={styles.rechargeSection}>
         <Text style={{ fontSize: 18, color: 'black', fontWeight: '600', margin: 5 }}>Recharges & Bill Pay</Text>
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-
+          <FlatList
+            numColumns={4}
+            data={[
+              {
+                icon: require('../../assets/shop.png'),
+                title: 'Bagiyal Cement Store',
+              },
+              {
+                icon: require('../../assets/shop.png'),
+                title: 'Bagiyal Cement Store',
+              },
+              {
+                icon: require('../../assets/shop.png'),
+                title: 'Bagiyal Cement Store',
+              },
+              {
+                icon: require('../../assets/shop.png'),
+                title: 'Bagiyal Cement Store',
+              },
+              {
+                icon: require('../../assets/shop.png'),
+                title: 'Bagiyal Cement Store',
+              },
+            ]}
+            renderItem={({item,index}) => {
+              return (
+                <TouchableOpacity style={styles.categoryItem}>
+                  <Image source={item.icon} style={styles.catergoryIcon} />
+                  <Text style={styles.title}>
+                    {item.title}
+                  </Text>
+                </TouchableOpacity>
+              )
+            }}
+          />
         </View>
 
       </View>
@@ -162,4 +196,19 @@ const styles = StyleSheet.create({
     marginTop: moderateScale(5),
     textAlign: 'center',
   },
+  catergoryIcon:{
+    width: scale(30),
+    height: scale(30),
+    // tintColor: 'purple',
+  },
+  title:{
+    fontSize: 16,
+    textAlign:'center',
+    fontcolor: 'black',
+  },
+  categoryItem:{
+    width: '25%',
+    justifyContent: 'center',
+    alignItems:'center',
+  }
 })

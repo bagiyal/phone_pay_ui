@@ -1,8 +1,13 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../AppNavigator/AppNavigator';
+import { useNavigation } from '@react-navigation/native';
 
+// type HomeProps = NativeStackScreenProps<RootStackParamList,'QrCode'>
 const CommanHeaders = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.header}>
     <View style={styles.header2}>
@@ -20,7 +25,9 @@ const CommanHeaders = () => {
         </View>
       </View>
       <View style={styles.headerRight}>
+        <TouchableOpacity onPress={() => {navigation.navigate('QrCode')}}>
         <Image source={require('../../assets/qr-code.png')} style={styles.rightLogo} />
+        </TouchableOpacity>
         <Image source={require('../../assets/question.png')} style={styles.rightLogo} />
         <Image source={require('../../assets/ringing.png')} style={styles.rightLogo} />
       </View>
