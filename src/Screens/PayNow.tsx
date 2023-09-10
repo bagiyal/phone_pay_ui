@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, FlatList, TouchableOpacity,TextInput,Button } from 'react-native'
+import { View, Text, StyleSheet, FlatList, TouchableOpacity,TextInput,Button, Image } from 'react-native'
 import React from 'react'
 import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo'
 import { useNavigation } from '@react-navigation/native';
+import Modal from 'react-native-modal';
 const PayNow = () => {
     const navigation = useNavigation();
     const handleBack = () => {
@@ -42,7 +43,8 @@ const PayNow = () => {
                 placeholder='Enter Amount'
                 style={styles.input}
                 />
-                                <TextInput 
+                <TextInput 
+                keyboardType='number-pad'
                 placeholderTextColor={'#929292'}
                 placeholder='Add a message (Optional)'
                 style={styles.input2}
@@ -55,6 +57,20 @@ const PayNow = () => {
                     <Text style={{fontSize:22,left:moderateScale(150),color:'white',marginTop:15}}>Pay Now</Text>
                 </TouchableOpacity>
             </View>
+            <Modal isVisible backdropOpacity={.2} style={styles.modalView}>
+                <View style={styles.mainView}>
+                    <View style={{height:verticalScale(60),borderBottomWidth:1,borderBottomColor:'black',margin:10,flexDirection:'row'}}>
+                    <Text style={{fontSize:17,color:'black',margin:6,fontWeight:'600'}}>Total Payable </Text>
+                    <Text style={{fontSize:22,color:'black',margin:4, marginLeft:110,}}>₹ 444 </Text>
+                    <Icon name='close' size={35} color="black" style={{position:'absolute',right:5,}} />
+                    </View>
+                    <View style={styles.bankView}>
+                        <Image source={require('../../assets/hdfc.png')} style={{height:40,width:40,margin:8,}} />
+                        <Text style={{fontStyle:'italic',color:'black',top:20,marginLeft:20,fontSize:16}}>HDFC Bank *****55 </Text>
+                        <Image source={require('../../assets/upi.jpg')} style={{height:14,width:60,margin:8,marginLeft:30,marginTop:23}} />
+</View>
+                </View>
+            </Modal>
         </View>
     )
 }
@@ -111,7 +127,24 @@ const styles = StyleSheet.create({
         fontSize:18,
         fontWeight: 'bold',
     },
-    btn:{
+    modalView:{
+        margin:0,
+    },
+    mainView:{
+        backgroundColor:'white',
+        width:'100%',
+        height:verticalScale(200),
+        position:'absolute',
+        bottom:0,
+        borderTopLeftRadius:moderateScale(20),
+        borderTopRightRadius:moderateScale(20),
+    },
+    bankView:{
+        height: verticalScale(50),
+        width:'100%',
+        backgroundColor:'grey',
+        flexDirection:'row',
+        textAlign:'center'
     }
 });
 
