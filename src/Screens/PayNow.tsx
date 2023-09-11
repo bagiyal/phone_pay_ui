@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, FlatList, TouchableOpacity,TextInput,Button, Image } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, TextInput, Button, Image } from 'react-native'
+import React, { useState } from 'react'
 import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo'
@@ -13,6 +13,8 @@ const PayNow = () => {
             navigation.goBack();
         }
     }
+    const [modealOpen,setModalOpen] = useState(false);
+    const [money,setMoney] = useState(null);
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -29,46 +31,51 @@ const PayNow = () => {
                     <View style={styles.nameCircle}>
                         <Text style={{ textAlign: 'center', marginTop: moderateScale(5), fontSize: 25 }}>AB</Text>
                     </View>
-                    <View style={{marginTop:10,marginLeft:5}}>
-                    <Text style={{fontSize:22,color:'black'}}>Aayu</Text>
-                    <Text>ineedhelp@ybl</Text>
+                    <View style={{ marginTop: 10, marginLeft: 5 }}>
+                        <Text style={{ fontSize: 22, color: 'black' }}>Aayu</Text>
+                        <Text>ineedhelp@ybl</Text>
                     </View>
-                    <Text style={{position:'absolute',right:10,marginTop:moderateScale(20),fontSize:18,color:'purple'}}>View History</Text>
-                    
+                    <Text style={{ position: 'absolute', right: 10, marginTop: moderateScale(20), fontSize: 18, color: 'purple' }}>View History</Text>
+
                 </View>
                 <View>
-                    <Icon name='currency-rupee' size={30} color="black" style={{left:20,top:20}} />
-                <TextInput 
-                placeholderTextColor={'#929292'}
-                placeholder='Enter Amount'
-                style={styles.input}
-                />
-                <TextInput 
-                keyboardType='number-pad'
-                placeholderTextColor={'#929292'}
-                placeholder='Add a message (Optional)'
-                style={styles.input2}
-                />
+                    <Icon name='currency-rupee' size={30} color="black" style={{ left: 20, top: 20 }} />
+                    <TextInput
+                        placeholderTextColor={'#929292'}
+                        placeholder='Enter Amount'
+                        // value={money}
+                        onChange={() => { setMoney(money)}}
+                        keyboardType='number-pad'
+                        style={styles.input}
+                    />
+                    <TextInput
+                        placeholderTextColor={'#929292'}
+                        placeholder='Add a message (Optional)'
+                        style={styles.input2}
+                    />
                 </View>
 
             </View>
-            <View style={{position:'absolute',bottom:0,backgroundColor:'purple',width:'100%',height:verticalScale(60)}}>
-                <TouchableOpacity>
-                    <Text style={{fontSize:22,left:moderateScale(150),color:'white',marginTop:15}}>Pay Now</Text>
+            <View style={{ position: 'absolute', bottom: 0, backgroundColor: 'purple', width: '100%', height: verticalScale(60) }}>
+                <TouchableOpacity onPress={() => {setModalOpen(true)}}>
+                    <Text style={{ fontSize: 22, left: moderateScale(150), color: 'white', marginTop: 15 }}>Pay Now</Text>
                 </TouchableOpacity>
             </View>
-            <Modal isVisible backdropOpacity={.2} style={styles.modalView}>
+            <Modal isVisible={modealOpen} backdropOpacity={.2} style={styles.modalView}>
                 <View style={styles.mainView}>
-                    <View style={{height:verticalScale(60),borderBottomWidth:1,borderBottomColor:'black',margin:10,flexDirection:'row'}}>
-                    <Text style={{fontSize:17,color:'black',margin:6,fontWeight:'600'}}>Total Payable </Text>
-                    <Text style={{fontSize:22,color:'black',margin:4, marginLeft:110,}}>₹ 444 </Text>
-                    <Icon name='close' size={35} color="black" style={{position:'absolute',right:5,}} />
+                    <View style={{ height: verticalScale(60), borderBottomWidth: 1, borderBottomColor: 'black', margin: 10, flexDirection: 'row' }}>
+                        <Text style={{ fontSize: 17, color: 'black', margin: 6, fontWeight: '600' }}>Total Payable </Text>
+                        <Text style={{ fontSize: 22, color: 'black', margin: 4, marginLeft: 110, }}>₹ {money} </Text>
+                        <TouchableOpacity onPress={()=>{setModalOpen(false)}} style={{ position: 'absolute', right: 5, }} >
+                        <Icon name='close' size={35} color="black"/>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.bankView}>
-                        <Image source={require('../../assets/hdfc.png')} style={{height:40,width:40,margin:8,}} />
-                        <Text style={{fontStyle:'italic',color:'black',top:20,marginLeft:20,fontSize:16}}>HDFC Bank *****55 </Text>
-                        <Image source={require('../../assets/upi.jpg')} style={{height:14,width:60,margin:8,marginLeft:30,marginTop:23}} />
-</View>
+                        <Image source={require('../../assets/hdfc.png')} style={{ height: 40, width: 40, margin: 8, }} />
+                        <Text style={{ fontStyle: 'italic', color: 'black', top: 20, marginLeft: 20, fontSize: 16 }}>HDFC Bank *****55 </Text>
+                        <Image source={require('../../assets/upi.jpg')} style={{ height: 14, width: 60, margin: 8, marginLeft: 30, marginTop: 23 }} />
+                        <Image source={require('../../assets/right_tick.jpg')} style={{ height: 30, width: 30, margin: 8, marginLeft: 30, marginTop: 14, }} />
+                    </View>
                 </View>
             </Modal>
         </View>
@@ -92,10 +99,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     card: {
-        backgroundColor:'white',
+        backgroundColor: 'white',
         height: verticalScale(220),
     },
-    subCard:{
+    subCard: {
         flexDirection: 'row',
     },
     nameCircle: {
@@ -105,46 +112,46 @@ const styles = StyleSheet.create({
         backgroundColor: 'grey',
         margin: '3%',
     },
-    input:{
+    input: {
         width: '80%',
         // height: moderateScale(50),
         // margin:30,
-        borderColor:'purple',
+        borderColor: 'purple',
         borderWidth: moderateVerticalScale(1),
         marginLeft: '15%',
         marginTop: moderateScale(-20),
-        fontSize:18,
+        fontSize: 18,
         fontWeight: 'bold',
     },
-    input2:{
+    input2: {
         width: '80%',
         // height: moderateScale(50),
         // margin:30,
-        borderColor:'purple',
+        borderColor: 'purple',
         borderWidth: moderateVerticalScale(1),
         marginLeft: '15%',
         marginTop: moderateScale(20),
-        fontSize:18,
+        fontSize: 18,
         fontWeight: 'bold',
     },
-    modalView:{
-        margin:0,
+    modalView: {
+        margin: 0,
     },
-    mainView:{
-        backgroundColor:'white',
-        width:'100%',
-        height:verticalScale(200),
-        position:'absolute',
-        bottom:0,
-        borderTopLeftRadius:moderateScale(20),
-        borderTopRightRadius:moderateScale(20),
+    mainView: {
+        backgroundColor: 'white',
+        width: '100%',
+        height: verticalScale(200),
+        position: 'absolute',
+        bottom: 0,
+        borderTopLeftRadius: moderateScale(20),
+        borderTopRightRadius: moderateScale(20),
     },
-    bankView:{
+    bankView: {
         height: verticalScale(50),
-        width:'100%',
-        backgroundColor:'grey',
-        flexDirection:'row',
-        textAlign:'center'
+        width: '100%',
+        backgroundColor: 'grey',
+        flexDirection: 'row',
+        textAlign: 'center'
     }
 });
 
