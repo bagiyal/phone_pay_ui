@@ -44,7 +44,7 @@ const PayNow = () => {
                         placeholderTextColor={'#929292'}
                         placeholder='Enter Amount'
                         // value={money}
-                        onChange={() => { setMoney(money)}}
+                        onChangeText={txt => setMoney(txt)}
                         keyboardType='number-pad'
                         style={styles.input}
                     />
@@ -75,6 +75,11 @@ const PayNow = () => {
                         <Text style={{ fontStyle: 'italic', color: 'black', top: 20, marginLeft: 20, fontSize: 16 }}>HDFC Bank *****55 </Text>
                         <Image source={require('../../assets/upi.jpg')} style={{ height: 14, width: 60, margin: 8, marginLeft: 30, marginTop: 23 }} />
                         <Image source={require('../../assets/right_tick.jpg')} style={{ height: 30, width: 30, margin: 8, marginLeft: 30, marginTop: 14, }} />
+                        <View style={{ position: 'absolute', backgroundColor: 'purple', width: '85%', height: verticalScale(50),marginLeft:30,marginTop:moderateScale(80),borderRadius:moderateScale(30) }}>
+                <TouchableOpacity onPress={() => {setModalOpen(true)}}>
+                    <Text style={{ fontSize: 20, left: moderateScale(100), color: 'white', marginTop: 12 }}>Pay Now ₹ {money} </Text>
+                </TouchableOpacity>
+            </View>
                     </View>
                 </View>
             </Modal>
@@ -85,7 +90,7 @@ const PayNow = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: '#f2f2f2',
+        backgroundColor: '#f2f2f2',
     },
     header: {
         width: '100%',
@@ -140,13 +145,14 @@ const styles = StyleSheet.create({
     mainView: {
         backgroundColor: 'white',
         width: '100%',
-        height: verticalScale(200),
+        height: verticalScale(250),
         position: 'absolute',
         bottom: 0,
         borderTopLeftRadius: moderateScale(20),
         borderTopRightRadius: moderateScale(20),
     },
     bankView: {
+        marginTop:moderateScale(20),
         height: verticalScale(50),
         width: '100%',
         backgroundColor: 'grey',
