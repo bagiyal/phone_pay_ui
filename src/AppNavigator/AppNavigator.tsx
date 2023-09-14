@@ -7,11 +7,12 @@ import QrCode from '../Screens/QrCode';
 import Main from '../Screens/Main';
 import BottomNav from '../BottomNav';
 import PayNow from '../Screens/PayNow';
-
+import UpiPass from '../Screens/UpiPass';
 export type RootStackParamList = {
   BottomNav: undefined,
   QrCode: undefined,
   PayNow: undefined,
+  UpiPass: undefined
 }
 const stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -22,6 +23,7 @@ const AppNavigator = () => {
         <stack.Screen name='BottomNav' component={BottomNav} options={{ headerShown:false }} />
         <stack.Screen name='QrCode' component={QrCode} options={{ headerShown: false}} />
         <stack.Screen name='PayNow' component={PayNow} options={{ headerShown: false}} />
+        <stack.Screen name='UpiPass' component={UpiPass} options={{ headerShown: false}} />
       </stack.Navigator>
     </NavigationContainer>
   )

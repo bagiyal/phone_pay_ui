@@ -76,7 +76,7 @@ const PayNow = () => {
                         <Image source={require('../../assets/upi.jpg')} style={{ height: 14, width: 60, margin: 8, marginLeft: 30, marginTop: 23 }} />
                         <Image source={require('../../assets/right_tick.jpg')} style={{ height: 30, width: 30, margin: 8, marginLeft: 30, marginTop: 14, }} />
                         <View style={{ position: 'absolute', backgroundColor: 'purple', width: '85%', height: verticalScale(50),marginLeft:30,marginTop:moderateScale(80),borderRadius:moderateScale(30) }}>
-                <TouchableOpacity onPress={() => {setModalOpen(true)}}>
+                <TouchableOpacity onPress={() => {navigation.navigate('UpiPass')}}>
                     <Text style={{ fontSize: 20, left: moderateScale(100), color: 'white', marginTop: 12 }}>Pay Now ₹ {money} </Text>
                 </TouchableOpacity>
             </View>
