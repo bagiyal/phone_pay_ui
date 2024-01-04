@@ -40,6 +40,7 @@ const BottomNav = () => {
           </TouchableOpacity>
         </View>
       </View>
+
     </View>
   )
 }

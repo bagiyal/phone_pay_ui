@@ -5,6 +5,24 @@ import CommanHeaders from './CommanHeaders';
 
 const Home = () => {
   const [contentHeight, setContentHeight] = useState(0);
+  const moneyTransferData = [
+    {
+      title: 'To Mobile Number',
+      icon: require('../../assets/user.png'),
+    },
+    {
+      title: 'To Mobile Number',
+      icon: require('../../assets/bank.png'),
+    },
+    {
+      title: 'To Mobile Number',
+      icon: require('../../assets/loader.png'),
+    },
+    {
+      title: 'To Mobile Number',
+      icon: require('../../assets/bank.png'),
+    },
+  ];
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -26,22 +44,13 @@ const Home = () => {
         <View style={styles.paymentBanner}>
           <Text style={{ fontSize: 18, color: 'black', fontWeight: '700', margin: 5 }}>Money Transfer</Text>
           <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-            <TouchableOpacity style={styles.money_transfer}>
-              <Image source={require('../../assets/user.png')} style={styles.Money_Transfer_Logo} />
-              <Text style={styles.moneyTransfer_Text}>To Mobile Number</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.money_transfer}>
-              <Image source={require('../../assets/bank.png')} style={styles.Money_Transfer_Logo} />
-              <Text style={styles.moneyTransfer_Text}>To Bank/UPI ID</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.money_transfer}>
-              <Image source={require('../../assets/loader.png')} style={styles.Money_Transfer_Logo} />
-              <Text style={styles.moneyTransfer_Text}>To Self Account</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.money_transfer}>
-              <Image source={require('../../assets/bank.png')} style={styles.Money_Transfer_Logo} />
-              <Text style={styles.moneyTransfer_Text}>Check Balance</Text>
-            </TouchableOpacity>
+            {moneyTransferData.map((item, index) => (
+              <TouchableOpacity style={styles.money_transfer}>
+                <Image source={item.icon} style={styles.Money_Transfer_Logo} />
+                <Text style={styles.moneyTransfer_Text}>{item.title}</Text>
+              </TouchableOpacity>
+            ))}
+
           </View>
 
         </View>
